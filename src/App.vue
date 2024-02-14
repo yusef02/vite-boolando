@@ -21,5 +21,5 @@ export default {
   <app-footer></app-footer>
 </template>
 <style lang="scss">
-@use "./style/general.scss" as *;
+@use "./assets/style/general.scss" as *;
 </style>

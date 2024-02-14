@@ -1,0 +1,35 @@
+@mixin flex($--verse: row, $--justy-contet: center, $aling) {
+  display: flex;
+  @if ($--verse == "row") {
+    flex-direction: row;
+  }
+  @if ($--verse == "row") {
+    flex-direction: collumn;
+  }
+  @if ($--justy-contet == "center") {
+    justify-content: center;
+  }
+  @if ($--justy-contet == "left") {
+    justify-content: flex-start;
+  }
+  @if ($--justy-contet == "right") {
+    justify-content: flex-end;
+  }
+  @if ($align == "center") {
+    align-items: center;
+  }
+  @if ($align == "left") {
+    align-items: flex-start;
+  }
+  @if ($align == "right") {
+    align-items: flex-end;
+  }
+}
+
+@mixin reset() {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  color: inherit;
+}

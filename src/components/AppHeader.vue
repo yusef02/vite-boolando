@@ -1,22 +1,48 @@
 <script>
 import AppLogo from "./AppLogo.vue";
+import AppNav from "./AppNav.vue";
+
 export default {
   data() {
     return {
       headerNavSections: [
-        { src: "#Donna", tagText: "Donna" },
-        { src: "#Uomo", tagText: "Uomo" },
-        { src: "#Bambini", tagText: "Bambini" },
+        { src: "#", tagText: "Donna" },
+        { src: "#", tagText: "Uomo" },
+        { src: "#", tagText: "Bambini" },
       ],
       headerNavLinkto: [
-        { src: "#", tag: "Donna" },
-        { src: "#", tag: "Uomo" },
-        { src: "#", tag: "Bambini" },
+        {
+          src: "#",
+          tagIcon: {
+            solid: false,
+            regular: true,
+            brand: false,
+            icon: "fa-user",
+          },
+        },
+        {
+          src: "#",
+          tagIcon: {
+            solid: false,
+            regular: true,
+            brand: false,
+            icon: "fa-heart",
+          },
+        },
+        {
+          src: "#",
+          tagIcon: {
+            solid: true,
+            regular: false,
+            brand: false,
+            icon: "fa-bag-shopping",
+          },
+        },
       ],
     };
   },
 
-  components: { AppLogo },
+  components: { AppLogo, AppNav },
   mounted() {
     console.log("AppHeader mounted");
   },
@@ -26,22 +52,14 @@ export default {
   <header class="header">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col header__nav">
-          <ul>
-            <li v-for="tag in headerNavSections">
-              <a :href="tag.src">{{ tag.tagText }}</a>
-            </li>
-          </ul>
+        <div class="col-md">
+          <app-nav :navLinks="headerNavSections"></app-nav>
         </div>
-        <div class="col">
+        <div class="col-md">
           <app-logo></app-logo>
         </div>
-        <div class="col header__nav">
-          <ul>
-            <li v-for="tag in headerNavLinkto">
-              <a :href="tag.src">{{ tag.tag }}</a>
-            </li>
-          </ul>
+        <div class="col-md">
+          <app-nav :navIcons="headerNavLinkto"></app-nav>
         </div>
       </div>
     </div>
@@ -56,28 +74,14 @@ export default {
   top: 0;
   z-index: 1;
   text-align: center;
-
-  &__nav {
+  .col-md {
     flex: 0 0 0;
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: row;
-
-      li {
-        padding: 1rem 1.5rem;
-        a {
-          text-decoration: none;
-          color: white;
-        }
-      }
-    }
   }
-  .col:nth-child(2) img {
-    height: 50px;
+  .col-md:nth-child(2) {
     flex-grow: 1;
+    img {
+      height: 50px;
+    }
   }
 }
 </style>
