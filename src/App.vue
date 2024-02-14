@@ -5,9 +5,7 @@ import AppFooter from "./components/AppFooter.vue";
 
 export default {
   data() {
-    return {
-      title: "My Vue project",
-    };
+    return {};
   },
   components: { AppHeader, AppMain, AppFooter },
   mounted() {

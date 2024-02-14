@@ -1,26 +1,24 @@
 <script>
+import LikeButton from "./LikeButton.vue";
 export default {
   data() {
     return {};
   },
+  props: ["product"],
+  components: { LikeButton },
   methods: {
     buildImagePath(image) {
       return new URL("../assets/img/" + image, import.meta.url).href;
     },
   },
-  props: ["product"],
 };
 </script>
 <template>
   <div class="col-md-4">
     <div class="card article">
-      <span class="article--like-btn">&hearts;</span>
+      <like-button :isLike="product.liked"></like-button>
       <img :src="buildImagePath(product.img1)" :alt="product.img" />
-      <img
-        class="d-none"
-        :src="buildImagePath(product.img2)"
-        :alt="product.img"
-      />
+      <img :src="buildImagePath(product.img2)" :alt="product.img" />
       <div class="tagged">
         <span v-if="product.badges.sale" class="sale">{{
           product.badges.sale
@@ -67,21 +65,6 @@ export default {
   top: 80%;
 }
 
-/* bottone mi piace */
-.article .article--like-btn {
-  display: inline-block;
-  width: 3rem;
-  height: 3rem;
-  font-size: 1.5rem;
-  line-height: 3rem;
-  text-align: center;
-  vertical-align: middle;
-  background-color: lightgrey;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
 /* descrizione articolo */
 .article .article--desc span {
   display: inline-block;
@@ -95,5 +78,14 @@ export default {
 .article .article--desc .previous-price {
   color: rgb(68, 68, 68);
   text-decoration: line-through;
+}
+.article img:last-of-type {
+  display: none;
+}
+.article:hover img:first-of-type {
+  display: none;
+}
+.article:hover img:last-of-type {
+  display: block;
 }
 </style>

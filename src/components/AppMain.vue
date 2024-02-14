@@ -1,103 +1,21 @@
 <script>
+import { store } from "../store";
+import axios from "axios";
+
 import AppArticleProduct from "./AppArticleProduct.vue";
 export default {
   data() {
     return {
-      articles: [
-        {
-          img1: "1.webp",
-          img2: "1b.webp",
-          liked: false,
-          badges: {
-            sale: "50%",
-            sustainability: true,
-          },
-          desc: {
-            brand: "Levi's",
-            model: "RELAXED FIT TEE UNISEX",
-            currentPrice: 14.99,
-            previousPrice: 29.99,
-          },
-        },
-        {
-          img1: "2.webp",
-          img2: "2b.webp",
-          liked: false,
-          badges: {
-            sale: "30%",
-            sustainability: false,
-          },
-          desc: {
-            brand: "Guess",
-            model: "ROSES TEE",
-            currentPrice: 20.99,
-            previousPrice: 29.99,
-          },
-        },
-        {
-          img1: "3.webp",
-          img2: "3b.webp",
-          liked: false,
-          badges: {
-            sale: "30%",
-            sustainability: false,
-          },
-          desc: {
-            brand: "Come Zucchero Filato",
-            model: "VOGLIA DI COLORI PASTELLO",
-            currentPrice: 129.99,
-            previousPrice: 184.99,
-          },
-        },
-        {
-          img1: "4.webp",
-          img2: "4b.webp",
-          liked: false,
-          badges: {
-            sale: "50%",
-            sustainability: true,
-          },
-          desc: {
-            brand: "Levi's",
-            model: "TEE UNISEX",
-            currentPrice: 14.99,
-            previousPrice: 29.99,
-          },
-        },
-        {
-          img1: "5.webp",
-          img2: "5b.webp",
-          liked: false,
-          badges: {
-            sale: "50%",
-            sustainability: false,
-          },
-          desc: {
-            brand: "Maya Deluxe",
-            model: "STRIPE BODICE",
-            currentPrice: 99.99,
-            previousPrice: null,
-          },
-        },
-        {
-          img1: "6.webp",
-          img2: "6b.webp",
-          liked: false,
-          badges: {
-            sale: "50%",
-            sustainability: true,
-          },
-          desc: {
-            brand: "Esprit",
-            model: "MAGLIONE-BLACK",
-            currentPrice: 29.99,
-            previousPrice: null,
-          },
-        },
-      ],
+      store,
+      articles: [],
     };
   },
   components: { AppArticleProduct },
+  created() {
+    axios.get(`${store.apiUri}/products`).then((res) => {
+      this.articles = res.data;
+    });
+  },
 };
 </script>
 <template>

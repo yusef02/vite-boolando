@@ -1,9 +1,11 @@
 <script>
+import { store } from "../store";
 import AppNav from "./AppNav.vue";
+
 export default {
   data() {
     return {
-      title: "Boolando s.r.l.",
+      store,
       footerInfo: [
         { src: "#", tagText: "Informazioni legali" },
         { src: "#", tagText: "Informativa sulla privacy" },
@@ -66,7 +68,7 @@ export default {
     <div class="container">
       <div class="row">
         <div class="col-md footer__info">
-          <h1>{{ title }}</h1>
+          <h1>{{ store.companyTitle }}</h1>
           <app-nav :navLinks="footerInfo"></app-nav>
         </div>
         <div class="col-md footer__socials">
